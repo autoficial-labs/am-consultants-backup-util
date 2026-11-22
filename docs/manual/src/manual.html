@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AM Backup User Manual</title>
+<meta name="author" content="AFLABS">
+<meta name="description" content="User manual for AM Backup, the backup and restore application for Tally data. Written in ASD-STE100 Simplified Technical English.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="manual.css">
+</head>
+<body>
+
+<!-- ============================================================ COVER -->
+<section class="cover" id="cover">
+  <div class="cover-top">
+    <img class="cover-app" src="../assets/app-icon.png" alt="">
+    <div>
+      <p class="kicker-free">User manual · Version 1.0</p>
+      <h1 class="cover-title">AM Backup</h1>
+      <p class="cover-sub">Back up and restore your Tally data</p>
+    </div>
+  </div>
+  <div class="cover-shot"><img src="../shots/overview.png" alt="The AM Backup main window"></div>
+  <div class="cover-meta">
+    <div>
+      <p class="label">Prepared for</p>
+      <p class="value">AM True Tax</p>
+    </div>
+    <div>
+      <p class="label">Applies to</p>
+      <p class="value">AM Backup 1.0 for Windows and macOS</p>
+    </div>
+    <div>
+      <p class="label">Date</p>
+      <p class="value">November 2026</p>
+    </div>
+  </div>
+  <div class="cover-brand">
+    <img src="../assets/aflabs-mark.png" alt="">
+    <div>
+      <p class="wordmark">AUTOFICIAL / LABS</p>
+      <p class="muted">Developed by AFLABS · <a href="https://autoficial.ltd">autoficial.ltd</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ HOW TO USE + FINDER -->
+<section class="page" id="start-here">
+  <h1 class="plain">Start here</h1>
+  <p>This manual tells you how to use AM Backup. AM Backup keeps a copy of your Tally data on a secure server. It can put your data back after an error or a failure.</p>
+  <p>Click a task below to go to its procedure. Click a blue link anywhere in this manual to go to the related text. Use the bookmarks panel of your PDF reader to move between chapters.</p>
+
+  <h2 class="plain">Find a task</h2>
+  <div class="finder">
+    <a class="task" href="#restore-moment"><span class="q">I deleted or damaged a file today</span><span class="a">Restore files from a moment in time</span></a>
+    <a class="task" href="#restore-moment"><span class="q">I want the data as it was 2 hours ago</span><span class="a">Use the 2 hours ago preset</span></a>
+    <a class="task" href="#backup-now"><span class="q">I want a backup now, before I continue</span><span class="a">Back up now</span></a>
+    <a class="task" href="#tally-open"><span class="q">Tally is open all day on the office computer</span><span class="a">When Tally is open</span></a>
+    <a class="task" href="#tally-data"><span class="q">I want to see the vouchers in a backup</span><span class="a">View Tally data</span></a>
+    <a class="task" href="#server-setup"><span class="q">I must make the server for the office</span><span class="a">Set up a new server</span></a>
+    <a class="task" href="#restore-full"><span class="q">I want to restore a complete backup</span><span class="a">Restore a complete backup</span></a>
+    <a class="task" href="#user-add"><span class="q">A colleague must see one company only</span><span class="a">Add a user</span></a>
+    <a class="task" href="#user-revoke"><span class="q">A person must not have access now</span><span class="a">Revoke access</span></a>
+    <a class="task" href="#select-folder"><span class="q">I installed the app on a new computer</span><span class="a">Select the backup folder</span></a>
+    <a class="task" href="#trouble"><span class="q">Something does not work</span><span class="a">Troubleshooting</span></a>
+  </div>
+
+  <h2 class="plain">Symbols and text in this manual</h2>
+  <table class="key">
+    <tr><td><span class="ui">Back up now</span></td><td>A name on the screen, for example a button, a menu item or a page name.</td></tr>
+    <tr><td><span class="stepdemo">1</span></td><td>A step in a procedure. Do the steps in the given sequence.</td></tr>
+    <tr><td><span class="markdemo">1</span></td><td>A callout on a screen picture. The list below the picture tells you what the callout shows.</td></tr>
+    <tr><td><span class="tag-caution">CAUTION</span></td><td>Read this before you continue. If you do not obey it, you can lose data.</td></tr>
+    <tr><td><span class="tag-note">NOTE</span></td><td>Information that helps you to do the task.</td></tr>
+    <tr><td><span class="tag-admin">Administrator</span></td><td>Only the administrator account can do this task.</td></tr>
+  </table>
+</section>
+
+<!-- ============================================================ CONTENTS -->
+<section class="page" id="contents">
+  <h1 class="plain">Contents</h1>
+  <nav class="toc" id="toc"><!-- generated --></nav>
+</section>
+
+<!-- ============================================================ 1 INTRODUCTION -->
+<section class="chapter" id="intro">
+  <h1><span class="num">1</span>Introduction</h1>
+
+  <h2 id="what-it-does">1.1 What AM Backup does</h2>
+  <p>AM Backup is a computer application. It makes copies of the files in one folder and sends them to a server. Usually, this folder is the Tally data folder.</p>
+  <ul>
+    <li>When you save work in Tally, AM Backup finds the changed files. It sends a copy of each changed file to the server.</li>
+    <li>The server keeps each version of each file. Thus you can restore the files as they were at an earlier time.</li>
+    <li>At a set time, AM Backup also makes a <a href="#g-complete">complete backup</a>. A complete backup is one compressed copy of all the files in the folder.</li>
+    <li>Before AM Backup restores files, it shows you all the differences. It changes no file until you confirm.</li>
+  </ul>
+  <p>The administrator controls the server, the users and the backup schedule. Other users can restore files from the folders that the administrator gives to them.</p>
+
+  <h2 id="tally-safe">1.2 How AM Backup protects Tally files</h2>
+  <p>Tally keeps its company files open while it operates. If Tally saves a voucher during a copy, the copy can be incomplete. Thus AM Backup copies a company when Tally saved nothing for 3 minutes.</p>
+  <p>After the copy, AM Backup examines all the files of that company again. If a file changed during the copy, AM Backup discards the copy. It makes a new copy at the next quiet time. Thus Tally can stay open all day.</p>
+  <div class="note"><p class="tag-note">NOTE</p><p>The administrator can set AM Backup to wait until Tally closes. Refer to <a href="#tally-open">4.6 When Tally is open</a>.</p></div>
+
+  <h2 id="roles">1.3 Accounts and access levels</h2>
+  <table>
+    <thead><tr><th>Account</th><th>What the account can do</th></tr></thead>
+    <tbody>
+      <tr><td><b>Administrator</b></td><td>All tasks. Adds and removes users. Sets the backup schedule. Restores complete backups. There is only one administrator account.</td></tr>
+      <tr><td><b>Read and write</b></td><td>Sees the shared folders. Restores files from them. Can also back up these folders from his or her own computer.</td></tr>
+      <tr><td><b>Read only</b></td><td>Sees the shared folders and restores files from them. Cannot back up files.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ 2 INSTALL AND START -->
+<section class="chapter" id="install">
+  <h1><span class="num">2</span>Install and start AM Backup</h1>
+
+  <h2 id="before">2.1 Before you start</h2>
+  <p>Make sure that you have these items:</p>
+  <ul>
+    <li>A computer with Windows 10, Windows 11 or macOS 11 (or a later version).</li>
+    <li>A connection to the internet.</li>
+    <li>The installation file <span class="file">AM Backup_1.0.0_x64-setup.exe</span>. Your IT support gives you this file.</li>
+    <li>Your username and password. The administrator gives them to you.</li>
+  </ul>
+
+  <h2 id="install-steps">2.2 Install the application</h2>
+  <ol class="steps">
+    <li>Double-click the installation file.</li>
+    <li>If Windows shows a security message, click <span class="ui">More info</span>, then click <span class="ui">Run anyway</span>.</li>
+    <li>Follow the instructions on the screen.</li>
+    <li>When the installation is complete, AM Backup starts.</li>
+  </ol>
+  <div class="note"><p class="tag-note">NOTE</p><p>You do not need administrator rights on Windows to install AM Backup. The application installs for your Windows account only.</p></div>
+
+  <h2 id="connect">2.3 Connect to the backup server</h2>
+  <p>AM Backup asks for the server only when it starts for the first time. If your IT support prepared the application for your office, the server is already set. Then go to <a href="#signin">2.5 Sign in</a>.</p>
+  <figure data-shot="server" data-caption="Connect to your backup server" data-scale="0.72">
+    <ol class="legend">
+      <li>Online server: the server for normal use.</li>
+      <li>Test server on this computer: for tests only.</li>
+      <li>Set up a new server: for the administrator, one time only. Refer to <a href="#server-setup">2.7</a>.</li>
+      <li>Connect button.</li>
+    </ol>
+  </figure>
+  <ol class="steps">
+    <li>Click <span class="ui">Online server</span>.</li>
+    <li>Type the server address that your IT support gave you.</li>
+    <li>Click <span class="ui">Connect</span>.</li>
+    <li>If an error message shows, examine the address and the internet connection. Then try again.</li>
+  </ol>
+
+  <h2 id="first-admin">2.4 Create the administrator account <span class="tag-admin">Administrator</span></h2>
+  <p>Do this procedure one time only, on a new server. AM Backup shows this screen when the server has no administrator account.</p>
+  <ol class="steps">
+    <li>Type the setup key in <span class="ui">Setup key</span>. Your IT support gives you this key. If you set up the server with AM Backup, the app shows this screen with the key already in it. Refer to <a href="#server-setup">2.7</a>.</li>
+    <li>Type your name, a username and a password.</li>
+    <li>Use a password with a minimum of 8 characters. The bar below the field shows the password strength.</li>
+    <li>Click <span class="ui">Create administrator</span>.</li>
+  </ol>
+  <div class="caution"><p class="tag-caution">CAUTION</p><p>Keep the setup key in a safe place. You need it to reset the administrator password. Do not give the setup key to other users.</p></div>
+
+  <h2 id="signin">2.5 Sign in</h2>
+  <figure data-shot="signin" data-caption="Sign in" data-scale="0.72">
+    <ol class="legend">
+      <li>Username.</li>
+      <li>Password. Click the eye symbol to show the password.</li>
+      <li>Sign in button.</li>
+      <li>Link to reset the administrator password.</li>
+    </ol>
+  </figure>
+  <ol class="steps">
+    <li>Type your username.</li>
+    <li>Type your password.</li>
+    <li>Click <span class="ui">Sign in</span>.</li>
+  </ol>
+  <div class="note"><p class="tag-note">NOTE</p><p>After 5 incorrect passwords, AM Backup locks the account for 5 minutes. The administrator can unlock it at once. Refer to <a href="#user-more">7.6 Other user tasks</a>.</p></div>
+
+  <h2 id="tray">2.6 The icon in the notification area</h2>
+  <p>AM Backup operates in the background. Its icon is in the notification area of the Windows taskbar. When you close the window, AM Backup continues to make backups.</p>
+  <ul>
+    <li>Click the icon to open the window.</li>
+    <li>Right-click the icon to show a menu. The menu has <span class="ui">Back up now</span>, <span class="ui">Pause automatic backups</span> and <span class="ui">Quit AM Backup</span>.</li>
+    <li>Put the pointer on the icon to see the status, for example “AM Backup — Protected”.</li>
+  </ul>
+  <div class="caution"><p class="tag-caution">CAUTION</p><p>If you quit AM Backup, it stops all backups. Start AM Backup again from the Start menu.</p></div>
+
+  <h2 id="server-setup">2.7 Set up a new server <span class="tag-admin">Administrator</span></h2>
+  <p>Do this procedure one time only, on the computer of the administrator. AM Backup makes the server in the Cloudflare account of your office. You do not need other programs.</p>
+  <p>Make sure that you have these items:</p>
+  <ul>
+    <li>A Cloudflare account. The free plan is sufficient.</li>
+    <li>R2 storage that is on. In Cloudflare, open R2 and turn it on. Cloudflare can ask for a payment card.</li>
+    <li>Approximately 10 minutes.</li>
+  </ul>
+  <figure data-shot="setup-token" data-caption="Connect to your Cloudflare account">
+    <ol class="legend">
+      <li>Button that opens the Cloudflare token page.</li>
+      <li>Field for the token.</li>
+      <li>Check token button.</li>
+    </ol>
+  </figure>
+  <ol class="steps">
+    <li>On the first screen, click <span class="ui">Set up a new server</span>. Then click <span class="ui">Start setup</span>.</li>
+    <li>Read the list of items. Click <span class="ui">Continue</span>.</li>
+    <li>Click <span class="ui">Open Cloudflare token page</span>. The page opens in your web browser. Sign in to Cloudflare if it asks.</li>
+    <li>On the Cloudflare page, go to the bottom. Click <span class="ui">Continue to summary</span>. Then click <span class="ui">Create Token</span>.</li>
+    <li>Click <span class="ui">Copy</span> next to the token.</li>
+    <li>In AM Backup, paste the token in <span class="ui">Cloudflare token</span>. Click <span class="ui">Check token</span>.</li>
+    <li>If the token can see more than one account, select the account of your office. Click <span class="ui">Continue</span>.</li>
+  </ol>
+  <figure data-shot="setup-confirm" data-caption="Check and confirm">
+    <ol class="legend">
+      <li>Checks of the Cloudflare account.</li>
+      <li>Your workers.dev name. It shows only if the account has no name.</li>
+      <li>Set up server button.</li>
+    </ol>
+  </figure>
+  <ol class="steps" start="8" style="counter-reset: step 7">
+    <li>Examine the checks. If a check shows a red symbol, read its message and do the step that it gives. Then click <span class="ui">Check again</span>.</li>
+    <li>If the field <span class="ui">Your workers.dev name</span> shows, examine the name. Change it if necessary. The name becomes part of the server address.</li>
+    <li>Click <span class="ui">Set up server</span>.</li>
+    <li>Wait until all steps show a green symbol. This takes 1 to 5 minutes.</li>
+  </ol>
+  <figure data-shot="setup-progress" data-caption="The steps of the setup">
+  </figure>
+  <figure data-shot="setup-admin" data-caption="The setup key and the administrator account">
+    <ol class="legend">
+      <li>The setup key.</li>
+      <li>Copy key button.</li>
+      <li>Create administrator button.</li>
+    </ol>
+  </figure>
+  <ol class="steps" start="12" style="counter-reset: step 11">
+    <li>Click <span class="ui">Copy key</span>. Keep the key in a safe place, for example a password manager.</li>
+    <li>Type your name, a username and a password.</li>
+    <li>Click <span class="ui">Create administrator</span>.</li>
+  </ol>
+  <div class="note"><p class="tag-note">NOTE</p><p>AM Backup uses the token only during the setup. It does not keep the token. After the setup, you can delete the token in Cloudflare.</p></div>
+  <div class="caution"><p class="tag-caution">CAUTION</p><p>Keep the setup key in a safe place. If you lose the administrator password and the setup key, you can make a new key. On the sign-in screen, click <span class="ui">Forgot the administrator password?</span>. Then click <span class="ui">Make a new one with your Cloudflare account</span>.</p></div>
+
+  <h2 id="server-page">2.8 The server page and updates <span class="tag-admin">Administrator</span></h2>
+  <p>The <span class="ui">Server</span> page shows the address of the server. Give this address to the users. Each user installs AM Backup, clicks <span class="ui">Online server</span> and types the address.</p>
+  <figure data-shot="server-page" data-caption="The Server page" data-scale="0.85">
+    <ol class="legend">
+      <li>Copy button for the server address.</li>
+      <li>Connection status.</li>
+      <li>Update server button.</li>
+      <li>Steps to connect the other computers.</li>
+      <li>The items in your Cloudflare account.</li>
+    </ol>
+  </figure>
+  <p>A new version of AM Backup can have a new version of the server program. Then the <span class="ui">Server program</span> line tells you. To update the server:</p>
+  <ol class="steps">
+    <li>In the navigation, click <span class="ui">Server</span>.</li>
+    <li>Click <span class="ui">Update server</span>.</li>
+    <li>Make a new token. Do steps 3 to 6 of <a href="#server-setup">2.7</a>.</li>
+    <li>Click <span class="ui">Update server</span>. Wait until all steps show a green symbol.</li>
+  </ol>
+  <p>The update keeps all users, settings and backups.</p>
+</section>
+
+<!-- ============================================================ 3 MAIN WINDOW -->
+<section class="chapter" id="window">
+  <h1><span class="num">3</span>The main window</h1>
+  <p>The <span class="ui">Overview</span> page shows the status of your backups. It is the first page when you open AM Backup.</p>
+  <figure data-shot="overview" data-caption="The Overview page">
+    <ol class="legend">
+      <li>Status. A green shield tells you that all files have a backup.</li>
+      <li><span class="ui">Back up now</span> starts a backup at once.</li>
+      <li>More actions: make a complete backup, pause backups, open the folder.</li>
+      <li>Changes in the last 24 hours. Click a bar to restore the files to that time.</li>
+      <li>The backup folder and how AM Backup backs it up.</li>
+      <li>Complete backups: the last one, the next one and the number kept.</li>
+      <li>Navigation. Click a name to open a page.</li>
+      <li>Status summary. It is on all pages.</li>
+    </ol>
+  </figure>
+
+  <h2 id="status-words">3.1 Status messages</h2>
+  <table>
+    <thead><tr><th>Status</th><th>Meaning</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td><b>Protected</b></td><td>All files have a backup.</td><td>Nothing.</td></tr>
+      <tr><td><b>Changes detected</b></td><td>Files changed. AM Backup waits until the files stop to change.</td><td>Nothing. The backup starts after approximately 1 minute.</td></tr>
+      <tr><td><b>Backing up</b></td><td>AM Backup sends changed files to the server.</td><td>Nothing. You can continue to work.</td></tr>
+      <tr><td><b>Waiting for Tally</b></td><td>Tally is open. AM Backup waits until you close Tally.</td><td>Close Tally at the end of your work. Refer to <a href="#tally-open">4.6</a>.</td></tr>
+      <tr><td><b>Paused</b></td><td>Automatic backups are off.</td><td>Resume the backups. Refer to <a href="#pause">4.5</a>.</td></tr>
+      <tr><td><b>Can't reach the server</b></td><td>There is no connection to the server.</td><td>Examine the internet connection. AM Backup tries again automatically.</td></tr>
+      <tr><td><b>Needs attention</b></td><td>A backup failed.</td><td>Read the message. Refer to <a href="#trouble">10 Troubleshooting</a>.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ 4 BACK UP -->
+<section class="chapter" id="backup">
+  <h1><span class="num">4</span>Back up files</h1>
+
+  <h2 id="select-folder">4.1 Select the backup folder</h2>
+  <p>Do this procedure on the computer that has the Tally data. Usually, the Tally data folder is <span class="file">C:\TallyPrime\Data</span> or <span class="file">C:\Tally.ERP9\Data</span>. In Tally, the folder path shows on the company selection screen.</p>
+  <ol class="steps">
+    <li>In the navigation, click <span class="ui">Backup settings</span>.</li>
+    <li>Click <span class="ui">Choose folder…</span> (or <span class="ui">Change folder…</span>).</li>
+    <li>Find the Tally data folder and click <span class="ui">Select Folder</span>.</li>
+    <li>AM Backup shows the number of files and their size. Make sure that the values are correct.</li>
+    <li>Click <span class="ui">Start backing up</span>.</li>
+  </ol>
+  <p>The first backup sends all the files. Later backups send only the files that changed.</p>
+  <div class="note"><p class="tag-note">NOTE</p><p>You cannot select a full drive, for example <span class="file">C:\</span>. Select a folder.</p></div>
+
+  <h2 id="auto">4.2 How automatic backups operate</h2>
+  <p>AM Backup examines the backup folder all the time. When a file changes, AM Backup waits 1 minute for more changes. Then it sends the changed files to the server. If Tally is open, it waits until Tally saved nothing for 3 minutes. Refer to <a href="#tally-open">4.6</a>.</p>
+  <ul>
+    <li>New files go to the server.</li>
+    <li>Changed files go to the server again. The server keeps the earlier version too.</li>
+    <li>If you delete a file, the server keeps its earlier versions. You can restore them.</li>
+    <li>AM Backup does not send a file again if its contents did not change.</li>
+  </ul>
+  <p>The administrator can change when backups start. Refer to <a href="#settings-backup">8 Backup settings</a>.</p>
+
+  <h2 id="backup-now">4.3 Back up now</h2>
+  <p>Use this procedure before an important change, for example before you delete vouchers or close a financial year.</p>
+  <ol class="steps">
+    <li>Close Tally.</li>
+    <li>On the <span class="ui">Overview</span> page, click <span class="ui">Back up now</span>.</li>
+    <li>Wait until the status shows <b>Protected</b>. A message tells you the number of files that AM Backup sent.</li>
+  </ol>
+
+  <h2 id="full-now">4.4 Make a complete backup now <span class="tag-admin">Administrator</span></h2>
+  <figure data-shot="overview-menu" data-caption="The More actions menu">
+  </figure>
+  <ol class="steps">
+    <li>Close Tally.</li>
+    <li>On the <span class="ui">Overview</span> page, click the <span class="ui">…</span> button.</li>
+    <li>Click <span class="ui">Run a complete backup now</span>.</li>
+    <li>Wait until the progress bar is complete. Large folders can take some minutes.</li>
+  </ol>
+  <p>AM Backup compresses the complete backup. Usually, the archive is much smaller than the original files.</p>
+
+  <h2 id="pause">4.5 Pause and resume automatic backups</h2>
+  <ol class="steps">
+    <li>On the <span class="ui">Overview</span> page, click the <span class="ui">…</span> button.</li>
+    <li>Click <span class="ui">Pause automatic backups</span>.</li>
+    <li>To start the backups again, click <span class="ui">Resume automatic backups</span>.</li>
+  </ol>
+  <div class="caution"><p class="tag-caution">CAUTION</p><p>When you pause the backups, AM Backup does not protect new work. Resume the backups as soon as possible.</p></div>
+
+  <h2 id="tally-open">4.6 When Tally is open</h2>
+  <p>AM Backup has two methods for Tally. The administrator selects the method on the <span class="ui">Backup settings</span> page.</p>
+  <figure data-shot="settings-tally" data-caption="The Tally settings" data-scale="0.85">
+    <ol class="legend">
+      <li>Back up between Tally entries (default).</li>
+      <li>Wait until Tally closes.</li>
+      <li>Time without changes before a backup starts while Tally is open.</li>
+      <li>Save Tally data with the backups. Refer to <a href="#tally-data">6.1</a>.</li>
+    </ol>
+  </figure>
+  <p><b>Back up between Tally entries.</b> Use this method if Tally stays open all day. AM Backup copies a company when Tally saved nothing for 3 minutes. Then it examines the copy. If Tally saved a file during the copy, AM Backup discards the copy and tries again later. While AM Backup waits, the status shows <b>Tally is open</b>.</p>
+  <p><b>Wait until Tally closes.</b> AM Backup makes no backup while Tally is open. The status shows <b>Waiting for Tally</b>. Close Tally at the end of your work. Then AM Backup makes the backup automatically. If you must have a backup while Tally is open, click <span class="ui">Back up anyway</span> on the <span class="ui">Overview</span> page.</p>
+  <p>For a complete backup while Tally is open, AM Backup first makes a fast copy of the folder on this computer. It examines the copy. Then it compresses the copy and sends it to the server.</p>
+  <div class="caution"><p class="tag-caution">CAUTION</p><p>With the method <b>Wait until Tally closes</b>, a backup that you start with <span class="ui">Back up anyway</span> can contain incomplete files.</p></div>
+</section>
+
+<!-- ============================================================ 5 RESTORE -->
+<section class="chapter" id="restore">
+  <h1><span class="num">5</span>Restore files</h1>
+  <p>You can restore files in two ways:</p>
+  <ul>
+    <li>From a <b>moment in time</b>. AM Backup puts back each file as it was at that time. Use this method after an error today or in the last days.</li>
+    <li>From a <b>complete backup</b> <span class="tag-admin">Administrator</span>. AM Backup puts back the files from one archive. Use this method after a large failure.</li>
+  </ul>
+
+  <h2 id="restore-safe">5.1 Before you restore</h2>
+  <div class="caution"><p class="tag-caution">CAUTION</p><p>Close Tally on all computers before you restore files into the Tally data folder. If Tally is open, it can write over the restored files.</p></div>
+  <p>The safest method is to restore into a different folder. Then examine the restored data. Copy it into the Tally data folder only if it is correct.</p>
+
+  <h2 id="restore-moment">5.2 Restore files from a moment in time</h2>
+  <figure data-shot="restore-when" data-caption="Step 1: select the moment">
+    <ol class="legend">
+      <li>Select <span class="ui">A moment in time</span>.</li>
+      <li>Presets: 2, 4, 6 or 8 hours ago, or the latest backup.</li>
+      <li>Exact date and time.</li>
+      <li>Restore point. Drag it, or use the arrow keys.</li>
+      <li>Blue bars are changes after the restore point. The restore removes these changes.</li>
+      <li>Summary of the files at the restore point.</li>
+    </ol>
+  </figure>
+  <ol class="steps">
+    <li>In the navigation, click <span class="ui">Restore files</span>.</li>
+    <li>Click <span class="ui">A moment in time</span>.</li>
+    <li>Click a preset, for example <span class="ui">2 hours ago</span>.</li>
+    <li>To select a different time, drag the restore point on the timeline. Or type a date and time in the date field.</li>
+    <li>To see more days on the timeline, select a range, for example <span class="ui">Last 7 days</span>.</li>
+    <li>Read the summary below the timeline. It tells you the number of changes that the restore removes.</li>
+    <li>Continue with <a href="#restore-what">5.3 Select the folders</a>.</li>
+  </ol>
+  <div class="note"><p class="tag-note">NOTE</p><p>You can also start from the <span class="ui">Overview</span> page. Click a bar on the chart. AM Backup opens <span class="ui">Restore files</span> at that time.</p></div>
+
+  <h2 id="restore-what">5.3 Select the folders</h2>
+  <figure data-shot="restore-what" data-caption="Step 2: select the folders">
+    <ol class="legend">
+      <li>Select this option to restore some folders only.</li>
+      <li>Folder tree. A tick restores the folder and all its subfolders.</li>
+    </ol>
+  </figure>
+  <ol class="steps">
+    <li>To restore all files, select <span class="ui">Everything</span>.</li>
+    <li>To restore some folders only, select <span class="ui">Only the folders I choose</span>.</li>
+    <li>Click the arrow before a folder to see its subfolders.</li>
+    <li>Tick each folder that you want to restore. Each Tally company has its own numbered folder.</li>
+  </ol>
+  <p>A square in a checkbox tells you that you ticked some subfolders of that folder.</p>
+
+  <h2 id="restore-where">5.4 Select the destination</h2>
+  <figure data-shot="restore-where" data-caption="Step 3: select the destination">
+    <ol class="legend">
+      <li>A different folder. This is the safest option.</li>
+      <li>The original folder: the Tally data folder.</li>
+      <li>Button to select a different folder.</li>
+    </ol>
+  </figure>
+  <ol class="steps">
+    <li>Select <span class="ui">A different folder</span> or <span class="ui">The original folder</span>.</li>
+    <li>If you selected a different folder, click <span class="ui">Browse…</span> and select an empty folder.</li>
+    <li>Click <span class="ui">Compare and review</span>.</li>
+  </ol>
+  <p>The comparison does not change files. It shows you what the restore will do.</p>
+
+  <h2 id="restore-review">5.5 Examine the changes and restore</h2>
+  <figure data-shot="restore-review" data-caption="Review changes" class="tall">
+    <ol class="legend">
+      <li>Proportion of each type of change.</li>
+      <li>Types of change. Click a type to show or hide its files.</li>
+      <li>List of files, in folders. Clear a checkbox to keep the current file.</li>
+      <li>The backup copy and the current file, side by side.</li>
+      <li>Saved versions of the file and the restore point.</li>
+      <li>Restore button. It shows the number of files.</li>
+    </ol>
+  </figure>
+  <table>
+    <thead><tr><th>Type of change</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><span class="sw sw-g"></span><b>Will be restored</b></td><td>The file is not in the destination. The restore adds it.</td></tr>
+      <tr><td><span class="sw sw-b"></span><b>Will be replaced</b></td><td>The file in the destination is different. The restore replaces it with the backup copy.</td></tr>
+      <tr><td><span class="sw sw-r"></span><b>Only in destination</b></td><td>The file was not in the backup at that time. The restore keeps it, unless you tell it to remove it.</td></tr>
+      <tr><td><span class="sw sw-n"></span><b>Already identical</b></td><td>The file is the same. The restore does not change it.</td></tr>
+    </tbody>
+  </table>
+  <ol class="steps">
+    <li>Examine the types of change at the top of the page.</li>
+    <li>Click a file in the list to see its sizes, dates and saved versions.</li>
+    <li>Clear the checkbox of each file that you want to keep as it is now.</li>
+    <li>If necessary, tick <span class="ui">Also move … to the Recycle Bin</span>. This removes the files that were not in the backup.</li>
+    <li>Click <span class="ui">Restore … files</span>.</li>
+    <li>If a confirmation window shows, read it. Then click <span class="ui">Restore now</span>.</li>
+  </ol>
+  <p>If AM Backup has Tally data for the companies, the <span class="ui">In Tally</span> box shows what the restore changes in Tally. For example, it tells you how many vouchers the restore removes.</p>
+  <figure data-shot="restore-tally" data-caption="The In Tally box" data-scale="0.85">
+    <ol class="legend">
+      <li>Button that shows the vouchers on the Tally data page.</li>
+    </ol>
+  </figure>
+  <figure data-shot="restore-confirm" data-caption="Confirmation before AM Backup replaces files">
+  </figure>
+  <p>When the restore is complete, AM Backup shows the result:</p>
+  <figure data-shot="restore-done" data-caption="The result of the restore">
+    <ol class="legend">
+      <li>Opens the destination folder.</li>
+      <li>Starts a new restore.</li>
+    </ol>
+  </figure>
+  <div class="note"><p class="tag-note">NOTE</p><p>AM Backup examines each restored file against its backup copy. Each restored file also keeps its original date and time.</p></div>
+
+  <h2 id="restore-full">5.6 Restore a complete backup <span class="tag-admin">Administrator</span></h2>
+  <figure data-shot="restore-full" data-caption="Select a complete backup">
+    <ol class="legend">
+      <li>Select <span class="ui">A complete backup</span>.</li>
+      <li>List of complete backups, with the date, the number of files and the size.</li>
+    </ol>
+  </figure>
+  <ol class="steps">
+    <li>In the navigation, click <span class="ui">Restore files</span>.</li>
+    <li>Click <span class="ui">A complete backup</span>.</li>
+    <li>Select the complete backup that you want.</li>
+    <li>Do the steps in <a href="#restore-what">5.3</a>, <a href="#restore-where">5.4</a> and <a href="#restore-review">5.5</a>.</li>
+  </ol>
+
+  <h2 id="restore-undo">5.7 Undo a restore</h2>
+  <p>If you restored files into the Tally data folder, the next backup records the restored files. The server also keeps the versions from before the restore.</p>
+  <ol class="steps">
+    <li>Start a new restore from a moment in time.</li>
+    <li>Select a time immediately before the restore. Use <a href="#history">6 Backup history</a> to find that time.</li>
+    <li>Do the steps in <a href="#restore-what">5.3</a> to <a href="#restore-review">5.5</a>.</li>
+  </ol>
+</section>
+
+<!-- ============================================================ 6 HISTORY -->
+<section class="chapter" id="history">
+  <h1><span class="num">6</span>Backup history and Tally data</h1>
+  <p>The <span class="ui">Backup history</span> page shows each backup, with the newest first. The page puts the backups in groups by day.</p>
+  <figure data-shot="history" data-caption="The Backup history page" data-scale="0.8">
+    <ol class="legend">
+      <li>Filter: all backups, complete backups or file changes only.</li>
+      <li><span class="ui">Files</span> shows the files in a backup.</li>
+      <li><span class="ui">Restore to this moment</span> starts a restore at the time of that backup.</li>
+      <li><span class="ui">Restore…</span> starts a restore of that complete backup.</li>
+    </ol>
+  </figure>
+  <ol class="steps">
+    <li>To see the files in a backup, click <span class="ui">Files</span>.</li>
+    <li>To restore the files as they were after a backup, click <span class="ui">Restore to this moment</span>.</li>
+    <li>To see older backups, click <span class="ui">Show older backups</span> at the bottom of the page.</li>
+  </ol>
+
+  <h3 id="history-delete">Delete a complete backup <span class="tag-admin">Administrator</span></h3>
+  <ol class="steps">
+    <li>Click the <span class="ui">…</span> button of the complete backup.</li>
+    <li>Click <span class="ui">Delete this backup</span>.</li>
+    <li>Read the message. Click <span class="ui">Delete backup</span>.</li>
+  </ol>
+  <div class="caution"><p class="tag-caution">CAUTION</p><p>You cannot restore a deleted complete backup. The history of each file does not change.</p></div>
+
+  <h2 id="tally-data">6.1 View Tally data</h2>
+  <p>The <span class="ui">Tally data</span> page shows the companies, ledgers and vouchers as Tally had them at the time of each backup. AM Backup reads this data from Tally when it backs up a company. It does this a maximum of one time each hour for each company.</p>
+  <figure data-shot="tally-data" data-caption="The Tally data page" data-scale="0.85">
+    <ol class="legend">
+      <li>Company.</li>
+      <li>Moment: the time when AM Backup saved the data.</li>
+      <li>Compare with: a different moment, or Tally now.</li>
+      <li>Summary, vouchers and ledgers.</li>
+      <li>Button that saves the Tally data now.</li>
+    </ol>
+  </figure>
+  <ol class="steps">
+    <li>In the navigation, click <span class="ui">Tally data</span>.</li>
+    <li>In <span class="ui">Company</span>, select the company.</li>
+    <li>In <span class="ui">Moment</span>, select the time.</li>
+    <li>Click <span class="ui">Vouchers</span> or <span class="ui">Ledgers</span> to see the lists.</li>
+    <li>To find a party, a voucher number or a narration, type it in the search box.</li>
+  </ol>
+  <div class="note"><p class="tag-note">NOTE</p><p>Balances show <b>Dr</b> for debit and <b>Cr</b> for credit, as in Tally.</p></div>
+
+  <h2 id="tally-compare">6.2 Compare two moments</h2>
+  <figure data-shot="tally-changes" data-caption="Changes between two moments" data-scale="0.85">
+    <ol class="legend">
+      <li>The two moments. AM Backup shows the changes from the first moment to the second moment.</li>
+      <li>Button that changes the direction of the comparison.</li>
+      <li>Number of changes.</li>
+      <li>The changed vouchers.</li>
+    </ol>
+  </figure>
+  <ol class="steps">
+    <li>In <span class="ui">Moment</span>, select the first moment.</li>
+    <li>In <span class="ui">Compare with</span>, select a second moment. To compare with the data in Tally now, select <span class="ui">Tally now (live)</span>.</li>
+    <li>Click <span class="ui">Changes</span>.</li>
+  </ol>
+  <p>Each row has a word: <b>Added</b>, <b>Changed</b> or <b>Removed</b>. The rows also have a color: green, blue or red. The <span class="ui">Ledger balances</span> list shows the balances that are different.</p>
+
+  <h2 id="tally-connect">6.3 Turn on the Tally connection</h2>
+  <p>AM Backup reads Tally data through the XML server of Tally. Turn it on one time, on the computer where Tally operates.</p>
+  <p><b>TallyPrime:</b></p>
+  <ol class="steps">
+    <li>Press <span class="key">F1</span> (Help).</li>
+    <li>Select <span class="ui">Settings</span>, then <span class="ui">Connectivity</span>, then <span class="ui">Client/Server configuration</span>.</li>
+    <li>Set <span class="ui">TallyPrime acts as</span> to <span class="ui">Both</span>.</li>
+    <li>Set <span class="ui">Port</span> to 9000.</li>
+    <li>Accept the change. Then close Tally and open it again.</li>
+  </ol>
+  <p><b>Tally.ERP 9:</b></p>
+  <ol class="steps">
+    <li>Press <span class="key">F12</span> (Configure).</li>
+    <li>Select <span class="ui">Advanced Configuration</span>.</li>
+    <li>Set <span class="ui">Tally.ERP 9 is acting as</span> to <span class="ui">Both</span>.</li>
+    <li>Set <span class="ui">Port</span> to 9000.</li>
+    <li>Accept the change. Then close Tally and open it again.</li>
+  </ol>
+  <p>Open the <span class="ui">Tally data</span> page. It shows <b>Connected to Tally</b>.</p>
+  <div class="note"><p class="tag-note">NOTE</p><p>Tally data starts on the day that you turn on the connection. AM Backup cannot read Tally data from older backups.</p></div>
+</section>
+
+<!-- ============================================================ 7 USERS -->
+<section class="chapter" id="users">
+  <h1><span class="num">7</span>Users and access <span class="tag-admin">Administrator</span></h1>
+  <p>The <span class="ui">Users &amp; access</span> page shows all accounts. Only the administrator can see this page.</p>
+  <figure data-shot="users" data-caption="The Users &amp; access page" data-scale="0.85">
+    <ol class="legend">
+      <li>Adds a new user.</li>
+      <li>Access level of the user.</li>
+      <li>Folders that the user can see.</li>
+      <li>Status: Active, Locked or Revoked.</li>
+      <li>Edits the user.</li>
+      <li>More actions for the user.</li>
+    </ol>
+  </figure>
+
+  <h2 id="access-levels">7.1 Access levels and folder access</h2>
+  <table>
+    <thead><tr><th>Folder access</th><th>The user sees</th></tr></thead>
+    <tbody>
+      <tr><td><b>Everything</b></td><td>All folders, also new folders.</td></tr>
+      <tr><td><b>Only selected folders</b></td><td>Only the folders that you tick, and their subfolders.</td></tr>
+      <tr><td><b>All except selected</b></td><td>All folders, but not the folders that you tick.</td></tr>
+      <tr><td><b>Nothing for now</b></td><td>No folders. The user can sign in, but sees no files.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="user-add">7.2 Add a user</h2>
+  <figure data-shot="user-editor" data-caption="The user editor" data-scale="0.85">
+    <ol class="legend">
+      <li>Name of the user.</li>
+      <li>Makes a new password.</li>
+      <li>Access level: read only, or read and write.</li>
+      <li>Folder access.</li>
+      <li>Folder tree. Tick the folders.</li>
+      <li>Saves the changes.</li>
+    </ol>
+  </figure>
+  <ol class="steps">
+    <li>On the <span class="ui">Users &amp; access</span> page, click <span class="ui">Add user</span>.</li>
+    <li>Type the name of the person, for example <i>Priya Sharma</i>.</li>
+    <li>Type a username, for example <i>priya</i>. You cannot change the username later.</li>
+    <li>AM Backup makes a strong password. Click the copy button to copy it.</li>
+    <li>Select an access level.</li>
+    <li>Select the folder access.</li>
+    <li>If you selected <span class="ui">Only selected folders</span> or <span class="ui">All except selected</span>, tick the folders.</li>
+    <li>Click <span class="ui">Add user</span>.</li>
+    <li>Give the username and the password to the person. Use a safe method.</li>
+  </ol>
+  <div class="note"><p class="tag-note">NOTE</p><p>Each Tally company has its own numbered folder, for example <span class="file">Data/10001</span>. Open Tally to see the number of each company.</p></div>
+
+  <h2 id="user-change">7.3 Change the access of a user</h2>
+  <ol class="steps">
+    <li>Click the pencil button of the user.</li>
+    <li>Change the access level or the folders.</li>
+    <li>Click <span class="ui">Save changes</span>.</li>
+  </ol>
+  <p>The change has an effect immediately. The user does not have to sign in again.</p>
+
+  <h2 id="user-reset">7.4 Reset the password of a user</h2>
+  <ol class="steps">
+    <li>Click the pencil button of the user.</li>
+    <li>Click <span class="ui">Reset password</span>. AM Backup makes a new password.</li>
+    <li>Click the copy button.</li>
+    <li>Click <span class="ui">Save changes</span>.</li>
+    <li>Give the new password to the person.</li>
+  </ol>
+  <p>AM Backup signs the user out on all computers. The user must sign in with the new password.</p>
+
+  <h2 id="user-revoke">7.5 Revoke access</h2>
+  <figure data-shot="users-menu" data-caption="More actions for a user">
+  </figure>
+  <ol class="steps">
+    <li>Click the <span class="ui">…</span> button of the user.</li>
+    <li>Click <span class="ui">Revoke access</span>.</li>
+    <li>Read the message. Click <span class="ui">Revoke access</span>.</li>
+  </ol>
+  <p>AM Backup signs the user out on all computers immediately. To give the access back, click <span class="ui">Restore access</span> in the same menu.</p>
+
+  <h2 id="user-more">7.6 Other user tasks</h2>
+  <table>
+    <thead><tr><th>Task</th><th>Menu item (<span class="ui">…</span> button)</th></tr></thead>
+    <tbody>
+      <tr><td>Let a locked user sign in again</td><td><span class="ui">Unlock sign-in</span></td></tr>
+      <tr><td>Sign out a user on all computers</td><td><span class="ui">Sign out everywhere</span></td></tr>
+      <tr><td>Remove a user permanently</td><td><span class="ui">Delete user</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note"><p class="tag-note">NOTE</p><p>When you delete a user, the backups of that user stay in the history.</p></div>
+</section>
+
+<!-- ============================================================ 8 BACKUP SETTINGS -->
+<section class="chapter" id="settings-backup">
+  <h1><span class="num">8</span>Backup settings</h1>
+  <p>The <span class="ui">Backup settings</span> page has the rules for all computers that make backups. Only the administrator can change the rules. Other users with write access can select the backup folder only.</p>
+  <figure data-shot="settings-backup" data-caption="The Backup settings page" class="tall">
+    <ol class="legend">
+      <li>Backup folder on this computer.</li>
+      <li>When to back up.</li>
+      <li>Time without changes before a backup starts.</li>
+      <li>What to do when Tally is open.</li>
+      <li>Names of the Tally programs.</li>
+      <li>Save Tally data with the backups.</li>
+      <li>Schedule of complete backups.</li>
+      <li>Compression of complete backups.</li>
+      <li>Number of complete backups to keep.</li>
+      <li>Number of days of history for restores.</li>
+      <li>Types of files that AM Backup does not back up.</li>
+    </ol>
+  </figure>
+  <h2 id="settings-table">8.1 Settings and recommended values</h2>
+  <table>
+    <thead><tr><th>Setting</th><th>Options</th><th>Default</th></tr></thead>
+    <tbody>
+      <tr><td><b>When to back up</b></td><td>As files change (recommended), on a timer, or only when you ask.</td><td>As files change</td></tr>
+      <tr><td><b>Wait for files to settle</b></td><td>15 seconds to 15 minutes.</td><td>1 minute</td></tr>
+      <tr><td><b>Back up every</b></td><td>15 minutes to 24 hours. Only for “On a timer”.</td><td>30 minutes</td></tr>
+      <tr><td><b>When Tally is open</b></td><td>Back up between Tally entries (recommended), or wait until Tally closes.</td><td>Back up between Tally entries</td></tr>
+      <tr><td><b>Quiet time before a backup</b></td><td>1 minute to 15 minutes. Only for “Back up between Tally entries”.</td><td>3 minutes</td></tr>
+      <tr><td><b>After Tally closes, wait</b></td><td>0 seconds to 5 minutes. Only for “Wait until Tally closes”.</td><td>30 seconds</td></tr>
+      <tr><td><b>Names of the Tally programs</b></td><td>Program names, for example <span class="file">tally.exe</span>.</td><td>tally.exe, tallyprime.exe, tallyprimeserver.exe</td></tr>
+      <tr><td><b>Save Tally data with backups</b></td><td>On or off.</td><td>On</td></tr>
+      <tr><td><b>Save Tally data at most every</b></td><td>15 minutes to 8 hours.</td><td>1 hour</td></tr>
+      <tr><td><b>Port of the Tally XML server</b></td><td>The port in the Tally setting. Refer to <a href="#tally-connect">6.3</a>.</td><td>9000</td></tr>
+      <tr><td><b>Complete backups: how often</b></td><td>Every day, every few hours, once a week, or off.</td><td>Every day at 8:00 pm</td></tr>
+      <tr><td><b>Compression</b></td><td>Balanced, high or maximum. Maximum gives the smallest backups.</td><td>Maximum</td></tr>
+      <tr><td><b>Keep the latest</b></td><td>1 to 365 complete backups.</td><td>14</td></tr>
+      <tr><td><b>Keep every change for</b></td><td>7 days to 1 year, or forever.</td><td>30 days</td></tr>
+      <tr><td><b>Skipped file types</b></td><td>Temporary files, lock files and other types that you add.</td><td>*.tmp, ~$*, Thumbs.db, desktop.ini, .DS_Store</td></tr>
+    </tbody>
+  </table>
+  <h2 id="settings-save">8.2 Change a setting</h2>
+  <ol class="steps">
+    <li>In the navigation, click <span class="ui">Backup settings</span>.</li>
+    <li>Change the setting.</li>
+    <li>Click <span class="ui">Save changes</span> at the bottom of the page.</li>
+  </ol>
+  <p>The new rules apply to all computers in some minutes. To cancel your changes, click <span class="ui">Discard</span>.</p>
+  <div class="note"><p class="tag-note">NOTE</p><p>If the computer is off at the time of a complete backup, AM Backup makes it when the computer starts again.</p></div>
+</section>
+
+<!-- ============================================================ 9 APP SETTINGS -->
+<section class="chapter" id="settings">
+  <h1><span class="num">9</span>App settings</h1>
+  <figure data-shot="settings" data-caption="The Settings page" class="tall">
+    <ol class="legend">
+      <li>Change your password.</li>
+      <li>Sign out of AM Backup.</li>
+      <li>Start AM Backup when you sign in to Windows.</li>
+      <li>Keep AM Backup active when you close the window.</li>
+      <li>Appearance: match Windows, light or dark.</li>
+      <li>Connect to a different server.</li>
+    </ol>
+  </figure>
+
+  <h2 id="password">9.1 Change your password</h2>
+  <ol class="steps">
+    <li>In the navigation, click <span class="ui">Settings</span>.</li>
+    <li>Click <span class="ui">Change password</span>.</li>
+    <li>Type your current password and the new password.</li>
+    <li>Click <span class="ui">Change password</span>.</li>
+  </ol>
+  <p>AM Backup signs you out on your other computers.</p>
+
+  <h2 id="startup">9.2 Start AM Backup with Windows</h2>
+  <p>AM Backup sets this setting to on when it starts for the first time. Then backups continue after the computer starts again. If somebody set it to off, set it to on again:</p>
+  <ol class="steps">
+    <li>In the navigation, click <span class="ui">Settings</span>.</li>
+    <li>Set <span class="ui">Start AM Backup when I sign in to Windows</span> to on.</li>
+  </ol>
+  <div class="note"><p class="tag-note">NOTE</p><p>AM Backup starts when a person signs in to Windows, the same as Tally. After the computer restarts, sign in to Windows. Then AM Backup starts in the notification area.</p></div>
+
+  <h2 id="server-change">9.3 Connect to a different server</h2>
+  <ol class="steps">
+    <li>In the navigation, click <span class="ui">Settings</span>.</li>
+    <li>Click <span class="ui">Change server…</span>.</li>
+    <li>Click <span class="ui">Sign out and change</span>.</li>
+    <li>Do the steps in <a href="#connect">2.3 Connect to the backup server</a>.</li>
+  </ol>
+
+  <h2 id="activity">9.4 Activity log</h2>
+  <p>The <span class="ui">Settings</span> page also shows the last events on this computer. For the administrator, it also shows sign-ins and changes by all users. To send the full log to your IT support, click <span class="ui">Open log folder</span>.</p>
+</section>
+
+<!-- ============================================================ 10 TROUBLESHOOTING -->
+<section class="chapter" id="trouble">
+  <h1><span class="num">10</span>Troubleshooting</h1>
+  <table class="trouble">
+    <thead><tr><th>Problem</th><th>Possible cause</th><th>Remedy</th></tr></thead>
+    <tbody>
+      <tr><td>The status stays at <b>Waiting for Tally</b>.</td><td>The method is “Wait until Tally closes”, and Tally is open.</td><td>Close Tally. Or ask the administrator to select “Back up between Tally entries”. Refer to <a href="#tally-open">4.6</a>.</td></tr>
+      <tr><td>The status stays at <b>Tally is open</b> for a long time.</td><td>Tally saves files all the time, for example during an import.</td><td>Nothing. AM Backup makes the backup at the next quiet time.</td></tr>
+      <tr><td>The <span class="ui">Tally data</span> page shows <b>Tally not connected</b>.</td><td>The XML server of Tally is off, or Tally is not open on this computer.</td><td>Turn on the XML server. Refer to <a href="#tally-connect">6.3</a>.</td></tr>
+      <tr><td>The server setup stops at <b>R2 storage</b>.</td><td>R2 is not on in the Cloudflare account.</td><td>In Cloudflare, open R2 and turn it on. Then click <span class="ui">Check again</span>. Refer to <a href="#server-setup">2.7</a>.</td></tr>
+      <tr><td>The server setup tells you that the token cannot do a step.</td><td>The token does not have all four permissions.</td><td>Make a new token with <span class="ui">Open Cloudflare token page</span>. Refer to <a href="#server-setup">2.7</a>.</td></tr>
+      <tr><td>The status shows <b>Can't reach the server</b>.</td><td>There is no internet connection, or the server address is incorrect.</td><td>Examine the connection. AM Backup tries again automatically. If the problem continues, speak to your IT support.</td></tr>
+      <tr><td>A message tells you that some files <b>could not be read</b>.</td><td>A different program used the files.</td><td>Nothing. AM Backup tries again later. If the problem continues, close Tally.</td></tr>
+      <tr><td>The status shows <b>The backup folder is not available</b>.</td><td>The drive or the network folder has no connection.</td><td>Connect the drive. Or select the folder again. Refer to <a href="#select-folder">4.1</a>.</td></tr>
+      <tr><td>The sign-in fails with <b>Too many attempts</b>.</td><td>Five incorrect passwords.</td><td>Wait 5 minutes. Or ask the administrator to unlock the account. Refer to <a href="#user-more">7.6</a>.</td></tr>
+      <tr><td>The app tells you that the administrator revoked your access.</td><td>The administrator revoked your access.</td><td>Speak to the administrator.</td></tr>
+      <tr><td>The administrator forgot the password.</td><td>—</td><td>On the sign-in screen, click <span class="ui">Forgot the administrator password?</span>. Type the setup key and a new password. If you do not have the setup key, refer to <a href="#server-setup">2.7</a>.</td></tr>
+      <tr><td>Some files show <b>The file is in use or protected</b> after a restore.</td><td>Tally or a different program used the files.</td><td>Close Tally. Do the restore again. AM Backup restores only the files that are different.</td></tr>
+      <tr><td>The <span class="ui">Users &amp; access</span> page or a complete backup is not shown.</td><td>Your account is not the administrator account.</td><td>Speak to the administrator.</td></tr>
+      <tr><td>A folder is not in the folder tree.</td><td>The folder has no backup yet, or you have no access to it.</td><td>Wait for the next backup. Or ask the administrator to give you access.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ 11 GLOSSARY -->
+<section class="chapter" id="glossary">
+  <h1><span class="num">11</span>Glossary</h1>
+  <dl class="glossary">
+    <dt id="g-token">Access token</dt><dd>A secret code from Cloudflare. AM Backup uses it one time to make or update the server.</dd>
+    <dt id="g-admin">Administrator</dt><dd>The one account that controls users, the backup rules and complete backups.</dd>
+    <dt id="g-backup">Backup</dt><dd>A copy of files on the server. You use it to restore the files.</dd>
+    <dt id="g-folder">Backup folder</dt><dd>The folder that AM Backup copies to the server. Usually, it is the Tally data folder.</dd>
+    <dt id="g-complete">Complete backup</dt><dd>One compressed archive of all files in the backup folder, made at a set time.</dd>
+    <dt id="g-compression">Compression</dt><dd>A method that makes a file smaller. AM Backup restores the file to its original size.</dd>
+    <dt id="g-destination">Destination</dt><dd>The folder that receives the restored files.</dd>
+    <dt id="g-restore-point">Restore point</dt><dd>The moment in time that you select. AM Backup puts back the files as they were at that moment.</dd>
+    <dt id="g-quiet">Quiet time</dt><dd>A time when Tally saves no files. While Tally is open, AM Backup makes backups at quiet times.</dd>
+    <dt id="g-revoke">Revoke</dt><dd>To stop the access of a user. The account stays, but the user cannot sign in.</dd>
+    <dt id="g-server">Server</dt><dd>The computer on the internet that keeps your backups. AM Backup uses Cloudflare.</dd>
+    <dt id="g-setup-key">Setup key</dt><dd>A secret value on the server. You need it to create or reset the administrator account.</dd>
+    <dt id="g-tally-data">Tally data</dt><dd>The companies, ledgers and vouchers that AM Backup reads from Tally at the time of a backup.</dd>
+    <dt id="g-version">Version</dt><dd>One saved state of a file. The server keeps a new version each time the file changes.</dd>
+    <dt id="g-xml">XML server (Tally)</dt><dd>A setting in Tally that lets other programs read Tally data. AM Backup uses it to read ledgers and vouchers.</dd>
+  </dl>
+</section>
+
+<!-- ============================================================ 12 IT SUPPORT -->
+<section class="chapter" id="it">
+  <h1><span class="num">12</span>Information for IT support</h1>
+  <p>This chapter is for the person who installs the server. The file <span class="file">README.md</span> in the source code gives the full procedures.</p>
+  <table>
+    <thead><tr><th>Item</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td><b>Server</b></td><td>Cloudflare Worker. D1 database for accounts, permissions and the file index. R2 storage for file data and complete backups.</td></tr>
+      <tr><td><b>Test server</b></td><td>Use Localflare (<span class="file">npx localflare</span> in the <span class="file">server</span> folder). The address is <span class="file">http://localhost:8787</span>.</td></tr>
+      <tr><td><b>Production</b></td><td>Use <span class="ui">Set up a new server</span> in the app (refer to <a href="#server-setup">2.7</a>). The app makes the Worker, the D1 database, the R2 bucket, the nightly task and the setup key. To use Wrangler, refer to <span class="file">README.md</span>.</td></tr>
+      <tr><td><b>Cloudflare token</b></td><td>Account Settings: Read, Workers Scripts: Edit, D1: Edit, Workers R2 Storage: Edit. The app does not keep the token.</td></tr>
+      <tr><td><b>Tally connection</b></td><td>The XML server of Tally on <span class="file">127.0.0.1</span>, port 9000 by default.</td></tr>
+      <tr><td><b>Preset server address</b></td><td>Set <span class="file">AM_BACKUP_SERVER_URL</span> when you build the installer. Then users do not type the address.</td></tr>
+      <tr><td><b>Settings file</b></td><td><span class="file">%APPDATA%\ltd.autoficial.ambackup\config.json</span></td></tr>
+      <tr><td><b>Log file</b></td><td><span class="file">%LOCALAPPDATA%\ltd.autoficial.ambackup\logs\am-backup.log</span></td></tr>
+      <tr><td><b>Housekeeping</b></td><td>Each night at 03:17 UTC, the server removes history older than the set number of days and unused data.</td></tr>
+    </tbody>
+  </table>
+  <h2 id="ste-statement">12.1 About this manual</h2>
+  <p>This manual uses the rules of ASD-STE100 Simplified Technical English (STE). The text uses short sentences, the active voice and simple words. Each step in a procedure has one instruction.</p>
+  <p>An automatic check examined these five STE rules:</p>
+  <ul>
+    <li>Sentence length: a maximum of 20 words in a procedure and 25 words in other text.</li>
+    <li>Words from a list of words that STE does not approve.</li>
+    <li>The passive voice.</li>
+    <li>Words that end in <i>-ing</i>.</li>
+    <li>Short forms, for example <i>don't</i>.</li>
+  </ul>
+  <p>The result: <span data-ste-score>—</span>.</p>
+  <p>The automatic check does not examine all the words against the STE dictionary. Thus the result is not a formal STE audit.</p>
+</section>
+
+<!-- ============================================================ BACK COVER -->
+<section class="backcover" id="back">
+  <img src="../assets/aflabs-mark.png" alt="">
+  <p class="wordmark big">AUTOFICIAL / LABS</p>
+  <p class="muted">AM Backup is designed and developed by AFLABS.</p>
+  <p><a href="https://autoficial.ltd">autoficial.ltd</a></p>
+  <p class="fine">© 2026–2027 AFLABS. Tally, TallyPrime and Tally.ERP 9 are trademarks of Tally Solutions Pvt. Ltd. Windows is a trademark of Microsoft Corporation. Cloudflare is a trademark of Cloudflare, Inc.</p>
+</section>
+
+</body>
+</html>

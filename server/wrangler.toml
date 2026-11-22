@@ -1,0 +1,61 @@
+# AM Backup API — Cloudflare Worker
+#
+# Local development (Localflare / wrangler dev) uses the top-level config below.
+# Everything runs on your machine: D1 and R2 are simulated in .wrangler/state.
+#
+# Production uses [env.production]. Before the first deploy:
+#   1. npx wrangler d1 create am_backup          -> paste the database_id below
+#   2. npx wrangler r2 bucket create am-backup-files
+#   3. npx wrangler secret put SETUP_KEY --env production
+#   4. npm run db:migrate:remote && npm run deploy
+# See ../README.md for the full guide.
+
+name = "am-backup-api"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+APP_ENV = "local"
+SESSION_DAYS = "30"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "am_backup"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "am-backup-files"
+
+# Nightly housekeeping: version retention, orphaned data cleanup, expired sessions.
+[triggers]
+crons = ["17 3 * * *"]
+
+[observability]
+enabled = true
+
+# ---------------------------------------------------------------------------
+# Production
+# ---------------------------------------------------------------------------
+[env.production]
+name = "am-backup-api"
+# routes = [{ pattern = "backup.example.com", custom_domain = true }]
+
+[env.production.vars]
+APP_ENV = "production"
+SESSION_DAYS = "30"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "am_backup"
+database_id = "REPLACE_WITH_PRODUCTION_DATABASE_ID"
+migrations_dir = "migrations"
+
+[[env.production.r2_buckets]]
+binding = "BUCKET"
+bucket_name = "am-backup-files"
+
+[env.production.triggers]
+crons = ["17 3 * * *"]

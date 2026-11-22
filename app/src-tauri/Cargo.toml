@@ -1,0 +1,49 @@
+[package]
+name = "am-backup"
+version = "1.0.0"
+description = "AM Backup: backup and restore for Tally data folders"
+authors = ["AFLABS"]
+edition = "2021"
+rust-version = "1.80"
+
+[lib]
+name = "am_backup_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-autostart = "2"
+tauri-plugin-single-instance = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls", "http2", "multipart", "gzip"] }
+futures-util = "0.3"
+notify = "8"
+walkdir = "2"
+sha2 = "0.10"
+hex = "0.4"
+zstd = { version = "0.13", features = ["zstdmt"] }
+tar = "0.4"
+trash = "5"
+sysinfo = { version = "0.33", default-features = false, features = ["system"] }
+chrono = "0.4"
+anyhow = "1"
+parking_lot = "0.12"
+getrandom = "0.3"
+roxmltree = "0.20"
+flate2 = "1"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+
+[profile.dev.package."*"]
+opt-level = 2

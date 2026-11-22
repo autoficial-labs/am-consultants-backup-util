@@ -1,0 +1,89 @@
+/* Base layer: what Fluent components don't draw themselves. Colors come from Fluent tokens
+   exposed as CSS variables by FluentProvider. */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background: var(--colorNeutralBackground2, #f5f5f5);
+}
+
+#root > .fui-FluentProvider {
+  height: 100%;
+}
+
+/* Desktop-app feel: chrome text is not selectable, content and fields are. */
+.app-chrome {
+  user-select: none;
+}
+.selectable,
+input,
+textarea {
+  user-select: text;
+}
+
+::selection {
+  background: var(--colorBrandBackground2);
+  color: var(--colorNeutralForeground1);
+}
+
+/* Thin, quiet scrollbars that follow the theme. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--colorNeutralStroke1) transparent;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--colorNeutralStroke1);
+  border-radius: 8px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--colorNeutralStrokeAccessible);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+/* WebView2 adds its own reveal and clear buttons to inputs; the app has its own show/hide button. */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+/* Headings get their look from Fluent's Text components; drop the browser's default heading
+   margins (about 1em above and below) so spacing comes only from the layout. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}

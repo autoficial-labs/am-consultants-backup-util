@@ -1,0 +1,30 @@
+{
+  "name": "am-backup-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare Worker API for AM Backup (D1 for accounts and file index, R2 for backed-up data)",
+  "scripts": {
+    "dev": "wrangler dev --port 8787 --test-scheduled",
+    "localflare": "localflare",
+    "db:migrate:local": "wrangler d1 migrations apply am_backup --local",
+    "db:migrate:remote": "wrangler d1 migrations apply am_backup --remote --env production",
+    "deploy": "wrangler deploy --env production",
+    "bundle": "node scripts/bundle.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node scripts/integration-test.mjs"
+  },
+  "dependencies": {
+    "hono": "^4.13.19"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261121.1",
+    "localflare": "^0.5.0",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.166.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "workerd@1.20261119.1": true
+  }
+}

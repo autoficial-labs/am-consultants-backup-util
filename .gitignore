@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+target/
+demo-data/
+app/src-tauri/gen/
+*.log
+.DS_Store
+Thumbs.db
+docs/manual/build/
+app/src-tauri/.cargo/
