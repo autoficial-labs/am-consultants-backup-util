@@ -44,9 +44,10 @@ const useStyles = makeStyles({
   headerText: { display: 'flex', flexDirection: 'column', gap: '6px', minWidth: 0 },
   headerDesc: { color: tokens.colorNeutralForeground2, maxWidth: '68ch' },
   headerActions: { display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' },
-  group: { display: 'flex', flexDirection: 'column', gap: '4px' },
-  groupTitle: { marginBottom: '4px', display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '12px' },
-  groupDesc: { color: tokens.colorNeutralForeground3, marginTop: '-2px', marginBottom: '8px', maxWidth: '72ch' },
+  // Cards in a group stack with the same gap as option cards sit side by side.
+  group: { display: 'flex', flexDirection: 'column', gap: tokens.spacingVerticalMNudge },
+  groupTitle: { marginBottom: '0px', display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '12px' },
+  groupDesc: { color: tokens.colorNeutralForeground3, marginTop: '-4px', marginBottom: '4px', maxWidth: '72ch' },
   row: {
     display: 'grid',
     gridTemplateColumns: 'auto 1fr auto',
@@ -77,7 +78,7 @@ const useStyles = makeStyles({
     boxShadow: tokens.shadow2,
   },
   panelPad: { padding: '20px' },
-  options: { display: 'grid', gap: '8px' },
+  options: { display: 'grid', gap: tokens.spacingHorizontalMNudge },
   option: {
     display: 'grid',
     gridTemplateColumns: 'auto 1fr',
